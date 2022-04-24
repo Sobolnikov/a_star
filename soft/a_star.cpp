@@ -38,6 +38,29 @@ class vertex{
 		bool operator < (int op) {return f < op;}
 };
 
+void process_vertex (vertex *current, std::list<vertex>::iterator current_1, vertex *end, int g, 
+	std::list<vertex> *open_list, std::list<vertex> *close_list, Eigen::MatrixXi map)
+{
+	if ((map(current->get_pose().x(), current->get_pose().y()) != 1) && 
+		(std::find(close_list->begin(), close_list->end(), *current) == close_list->end()))
+	{
+		auto temp = std::find(open_list->begin(), open_list->end(), *current);
+		int f = g + std::abs(end->get_pose().x() - current->get_pose().x())
+					+ std::abs(end->get_pose().y() - current->get_pose().y());
+		current->set_g(g);
+		current->set_f(f);
+		current->set_parent_id(current->get_id());
+		if (temp == open_list->end())
+		{
+			open_list->push_back(*current);
+		} else if (*temp > f)
+		{
+			open_list->erase(temp);
+			open_list->push_back(*current);
+		}
+	}	
+}
+
 main()
 {
     //create a map
