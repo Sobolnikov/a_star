@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <list>
+#include <ctime>
 #include <cstdlib>
 #include <eigen-3.4.0/Eigen/Dense>
 
@@ -203,5 +204,5 @@ main()
 	}
 
 	std::cout << map << std::endl;
-
+	std::cout << "runtime = " << float(clock())/CLOCKS_PER_SEC << std::endl;
 }
