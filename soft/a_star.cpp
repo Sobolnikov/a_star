@@ -39,6 +39,47 @@ class vertex{
 		bool operator < (int op) {return f < op;}
 };
 
+/*class a_star{
+
+	Eigen::MatrixXi map;
+	int id;
+	vertex start;
+	vertex end;
+
+	void map_init()
+	{
+		map = Eigen::MatrixXi();
+	    map <<	Eigen::MatrixXi::Ones(1,10),
+				Eigen::MatrixXi::Ones(8,1),
+				Eigen::MatrixXi::Zero(8,8),
+				Eigen::MatrixXi::Ones(8,1),
+				Eigen::MatrixXi::Ones(1,10);
+
+	    //add obstacles
+	    for(int i = 2; i <= 7; ++i) {	map(i,5) = 1;	}
+	    for(int i = 3; i <= 5; ++i) {	map(2,i) = 1;	}
+	    for(int i = 3; i <= 5; ++i) {	map(7,i) = 1;	}
+
+	    //add start and end position	
+
+		start.set_f (std::abs(end.get_pose().x() - start.get_pose().x())
+				   + std::abs(end.get_pose().y() - start.get_pose().y())); 
+
+		map(start.get_pose().x(),start.get_pose().y()) = 100;
+		map(end.get_pose().x(),end.get_pose().y()) = -200;
+
+	}
+public:
+	a_star(const vertex s, const vertex e) : start {s}, end {e}
+	{
+
+	}
+
+
+};*/
+
+
+
 void process_vertex (vertex *current, std::list<vertex>::iterator current_1, vertex *end, int g, 
 	std::list<vertex> *open_list, std::list<vertex> *close_list, Eigen::MatrixXi map)
 {
